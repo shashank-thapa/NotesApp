@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/UI/Home/home.dart';
 import 'models/global.dart';
 import 'package:flutter/services.dart';
 
 void main(){
    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
+    statusBarColor: darkGreyColor,
+    statusBarIconBrightness: Brightness.light,
   ));
   runApp(MyApp());
 }
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       
       title: 'Notes App',
       theme: ThemeData(
@@ -35,44 +38,40 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       color: Colors.yellow,
       home: SafeArea(
           child: DefaultTabController(
-          length: 2,
+          length: 1,
           child: new Scaffold(
             body: Stack(
                 children:<Widget>[
                   TabBarView(
                   children: [
-                  new Container(
-                    color: darkGreyColor,
-                  ),
-                  new Container(color: Colors.orange,),
-
+                  HomePage(),
                 ],
               ),
               Container(
-                height: 200,
+                height: 240,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    bottomLeft:Radius.circular(50),
-                    bottomRight: Radius.circular(50)
+                    bottomLeft:Radius.circular(60),
+                    bottomRight: Radius.circular(60)
                     ),
-                    color: Colors.white,
+                    color: darkGreyColor,
                 ),
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("N O T E S", style: noteTitleStyle)
+                    Text("N O T Ǝ S", style: noteTitleStyle,)
                   ],
                 )
               ),
               Container(
-                height: 65,
-                width: 65,
-                margin: EdgeInsets.only(top: 650,left: MediaQuery.of(context).size.width*0.5-34.5),
+                height: 80,
+                width: 80,
+                margin: EdgeInsets.only(top: 700,left: MediaQuery.of(context).size.width*0.5-40),
                 child: FloatingActionButton(
+                  elevation: 0,
                   child: Icon(Icons.add,size: 60,),
                   backgroundColor: darkRed,
                   onPressed: () {}
@@ -81,26 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
               
             ]
             ),
-            appBar: AppBar(
-              elevation: 0,
-                  title: new TabBar(
-                tabs: [
-                  Tab(
-                    icon: new Icon(Icons.home),
-                  ),
-                  Tab(
-                    icon: new Icon(Icons.rss_feed),
-                  ),
-                ],
-                labelColor: darkGreyColor,
-                unselectedLabelColor: Colors.blue,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicatorPadding: EdgeInsets.all(5.0),
-                indicatorColor: Colors.transparent,
-              ),
-              backgroundColor: Colors.white,
-            ),
-            backgroundColor: Colors.white,
+            backgroundColor: lightGreyColor,
           ),
         ),
       ),
