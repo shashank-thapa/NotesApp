@@ -11,5 +11,11 @@ class Note(db.Model):
     id = db.Column(db.String(), primary_key=True, unique=True)
     note = db.Column(db.String(600), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+
     def __init__(self, note):
         self.note = note
+
+    def serialize(self):
+        return {
+            'note': self.note,
+        }
